@@ -30,7 +30,7 @@ public class Server {
                         valueSet.set(false);
                         server.notify();
                     }
-                thread1Lock.unlock();
+                    thread1Lock.unlock();
             }});
 
             Thread thread2 = new Thread(() -> {
@@ -45,18 +45,15 @@ public class Server {
                                 System.out.println(e.getMessage());
                             }
                         }
-                    server.addNumber(i);
+                        server.addNumber(i);
                         valueSet.set(true);
                         server.notify();
                     }
-                thread2Lock.unlock();
+                    thread2Lock.unlock();
             }});
 
             thread1.start();
             thread2.start();
-
-            thread1Lock.lock();
-            thread2Lock.lock();
 
             try {
                 thread1.join();
